@@ -58,18 +58,21 @@ body {
     background-color: orange;
 }
 #buttons .operator:active{
+    background-color:rgb(255, 189, 67);
 }
 #buttons .modifier, #buttons .clear {
     background-color: rgb(71, 71, 71);
-
 }
-
-#buttons .num {
+#buttons .modifier:active, #buttons .clear:active {
+    background-color: rgb(94, 94, 94);
+}
+#buttons .num, #buttons #decimal {
     background-color: gray;
 }
-#buttons #decimal {
-    background-color: gray;
+#buttons .num:active, #buttons #decimal:active {
+    background-color: rgb(170, 170, 170);
 }
+
 #buttons #equals {
     border-bottom-right-radius: 25px;
 }
