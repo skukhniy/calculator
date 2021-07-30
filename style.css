@@ -42,8 +42,8 @@ body {
     margin-bottom:0;
     margin-right: 20px;
     margin-left:35px;
-    font-size: 9vw;
-    font-family:monospace;
+    font-size:9vw;
+    font-family:sans-serif;
     overflow: hidden;
 }
 #buttons{
