@@ -28,7 +28,11 @@ function divide(a,b) {
 // plugs in operator and variables to return out a total to the display
 function operate(operator,a,b){
     var total = 0
-    a = parseFloat(a)
+    if(a === ''){
+        a = 0
+    }else{
+        a = parseFloat(a)
+    }
     console.log(a)
     b = parseFloat(b)
     console.log(b)
@@ -44,9 +48,17 @@ function operate(operator,a,b){
         total = 'ERROR'
         console.log('ERROR, INCORRECT OPERATOR VALUE PASSED')
     }
-    const display = document.querySelector("#displayNum")
-    display.innerHTML = total
-    numA = total.toString()
+    if ((total.toString()).length > 10){
+        alert("number length exceeds display limit")
+        numA = ''
+        numB = ''
+        operator = ''
+        display.innerHTML = '0'
+    }else{
+        const display = document.querySelector("#displayNum")
+        display.innerHTML = total
+        numA = total.toString()
+    }
 }
 
 // intalize variables to be used in operations
@@ -61,7 +73,15 @@ function clickButton(numID,num){
     idSelector.addEventListener(('click'),function(){
         const display = document.querySelector("#displayNum")
         numA += num.toString()
-        display.innerHTML = numA
+        if (numA.length > 10){
+            alert("number length exceeds display limit")
+            numA = ''
+            numB = ''
+            operator = ''
+            display.innerHTML = '0'
+        }else{
+            display.innerHTML = numA
+        }
         
     })
 }
