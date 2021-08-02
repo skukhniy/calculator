@@ -28,9 +28,9 @@ function divide(a,b) {
 // plugs in operator and variables to return out a total to the display
 function operate(operator,a,b){
     var total = 0
-    a = parseInt(a)
+    a = parseFloat(a)
     console.log(a)
-    b = parseInt(b)
+    b = parseFloat(b)
     console.log(b)
     console.log(a/b)
     if (operator==='add'){
@@ -45,14 +45,9 @@ function operate(operator,a,b){
         total = 'ERROR'
         console.log('ERROR, INCORRECT OPERATOR VALUE PASSED')
     }
-    // (operator === 'add') ? total = add(a,b)
-    // :(operator === 'subtract') ? total = subtract(a,b) 
-    // :(operator === 'multiply') ? total = multiply(a,b)
-    // :total = divide(a,b)
-
     const display = document.querySelector("#displayNum")
     display.innerHTML = total
-    numA = total
+    numA = total.toString()
 }
 
 // intalize variables to be used in operations
@@ -110,4 +105,25 @@ operationSelector.addEventListener(('click'),function(){
     numA = ''
     numB = ''
     operation = ''
+})
+
+// functionality for +/- button
+operationSelector = document.querySelector("#plusMinus")
+operationSelector.addEventListener(("click"),function(){
+    console.log(typeof numA)
+    if(numA.includes('-')){
+        numA = numA.replace("-","")
+    }else{
+        numA = "-"+numA
+    }
+    const display = document.querySelector("#displayNum")
+    display.innerHTML = numA
+       
+})
+// functionality for % button
+operationSelector = document.querySelector("#percent")
+operationSelector.addEventListener(("click"),function(){
+    numA = (parseFloat(numA)*.01).toString()
+    const display = document.querySelector("#displayNum")
+    display.innerHTML = numA
 })
