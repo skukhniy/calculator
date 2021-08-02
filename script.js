@@ -32,7 +32,6 @@ function operate(operator,a,b){
     console.log(a)
     b = parseFloat(b)
     console.log(b)
-    console.log(a/b)
     if (operator==='add'){
         total = add(a,b)
     }else if (operator ==='subtract'){
@@ -124,6 +123,17 @@ operationSelector.addEventListener(("click"),function(){
 operationSelector = document.querySelector("#percent")
 operationSelector.addEventListener(("click"),function(){
     numA = (parseFloat(numA)*.01).toString()
+    const display = document.querySelector("#displayNum")
+    display.innerHTML = numA
+})
+// functionality for . button
+operationSelector = document.querySelector("#decimal")
+operationSelector.addEventListener(("click"),function(){
+    if(numA.includes('.')){
+        numA = numA
+    }else{
+        numA = numA + "."
+    }
     const display = document.querySelector("#displayNum")
     display.innerHTML = numA
 })
