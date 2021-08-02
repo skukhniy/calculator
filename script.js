@@ -9,22 +9,41 @@ function add (a,b){
     return(a+b)
 }
 // sub
-function sub (a,b){
+function subtract(a,b){
     return(a-b)
 }
 // multiply
-function sub(a,b) {
+function multiply(a,b) {
     return(a*b)
 }
 // divide
-function sub(a,b) {
-    return(a/b)
+function divide(a,b) {
+    if (a === 0 || b===0){
+        return('ERROR ):<')
+    }else{
+        return(a/b)
+    }    
 }
 
+// plugs in operator and variables to return out a total to the display
 function operate(operator,a,b){
     var total = 0
+    a = parseInt(a)
+    console.log(a)
+    b = parseInt(b)
+    console.log(b)
+    console.log(a/b)
     if (operator==='add'){
         total = add(a,b)
+    }else if (operator ==='subtract'){
+        total = subtract(a,b)
+    }else if (operator === 'multiply'){
+        total = multiply(a,b)
+    }else if (operator == 'divide'){
+        total= divide(a,b)
+    }else{
+        total = 'ERROR'
+        console.log('ERROR, INCORRECT OPERATOR VALUE PASSED')
     }
     // (operator === 'add') ? total = add(a,b)
     // :(operator === 'subtract') ? total = subtract(a,b) 
@@ -33,12 +52,16 @@ function operate(operator,a,b){
 
     const display = document.querySelector("#displayNum")
     display.innerHTML = total
+    numA = total
 }
 
+// intalize variables to be used in operations
 var numA = ''
 var numB = ''
 var operation = ''
-// this function sets up the numbered buttons so they show up on the display and so the code will record the most recent number before an operator
+
+// this function sets up the numbered buttons so they show up on the display 
+// and so the code will record the most recent number before an operator
 function clickButton(numID,num){
     const  idSelector= document.querySelector("#" +numID)
     idSelector.addEventListener(('click'),function(){
@@ -48,24 +71,43 @@ function clickButton(numID,num){
         
     })
 }
-
-//this runs the clickbutton once for each numbered button to initalize them 
-numButtonIDs = ["one","two","three","four","five","six","seven","eight","nine"]
-for(var i=0; i<numButtonIDs.length; i++){
-    console.log(i)
-    console.log(numButtonIDs[i])
-    clickButton(numButtonIDs[i],(i+1))
+// sets up operator buttons so that they will record previous numbers,
+// and initalize the opeartor variable
+function clickOperator(operator){
+    var operationSelector = document.querySelector("#" + operator)
+    operationSelector.addEventListener(('click'),function(){
+        operation = operator
+        numB = numA
+        numA = ''
+        console.log(numA)
+    })
 }
 
-var operationSelector = document.querySelector("#add")
-operationSelector.addEventListener(('click'),function(){
-    operation = 'add'
-    numB = numA
-    numA = ''
-    console.log(numA)
-})
+//this runs the clickbutton once for each numbered button to initalize them 
+numButtonIDs = ["zero","one","two","three","four","five","six","seven","eight","nine"]
+for (var i=0; i<numButtonIDs.length; i++){
+    console.log(i)
+    console.log(numButtonIDs[i])
+    clickButton(numButtonIDs[i],(i))
+}
+// same as above but for operator buttons
+operatorButtonsIDs = ['add','subtract','multiply','divide']
+for (var i = 0; i<operatorButtonsIDs.length;i++){
+    clickOperator(operatorButtonsIDs[i])
+}
 
+// add button functionality for equals, uses the operate function to return a total
 operationSelector = document.querySelector("#equals")
 operationSelector.addEventListener(('click'),function(){
     operate(operation,numB,numA)
+})
+
+// add functionality for the AC (clear) button
+operationSelector = document.querySelector("#AC")
+operationSelector.addEventListener(('click'),function(){
+    const display = document.querySelector("#displayNum")
+    display.innerHTML = '0'
+    numA = ''
+    numB = ''
+    operation = ''
 })
